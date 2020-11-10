@@ -38,7 +38,11 @@
   - az aks get-credentials --resource-group <YourResourceGroup> --name <YourResourceName>
 
 * Setup SQL Server application components ... [video](./videos/Setup_SQLServer.mp4)
-  - [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15) [pvc.yaml](./pvc.yaml) [sqldeployment.yaml](./sqldeployment.yaml)
+  - [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15)
+    - create persistent volume claim from existing storage class (for backend storage)
+      - kubectl apply -f ./[pvc.yaml](./pvc.yaml)
+    - create loadbalancer, replica set and leverage containerized SQL Server
+      - kubectl apply -f ./[sqldeployment.yaml](./sqldeployment.yaml)
 
 * Access SQL Server and test failover
   - Connect to SQL Server container pod via sqlcmd through loadbalancer
