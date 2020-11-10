@@ -38,11 +38,21 @@
   - az aks get-credentials --resource-group <YourResourceGroup> --name <YourResourceName>
 
 * Setup SQL Server application components ... [video](./videos/Setup_SQLServer.mp4)
-  - [Create a persistent volume claim](https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv)
-  - [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15)
+  - [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15) [pvc.yaml](./pvc.yaml) [sqldeployment.yaml](./sqldeployment.yaml)
 
 * Access SQL Server and test failover
   - Connect to SQL Server container pod via sqlcmd through loadbalancer
+    - sqlcmd -S <IPLoadBalancer> -U SA -P <secretPassword>
   - Query / modify SQL Server content via sqlcmd
+    - select name from sys.databases
+      go
+    - CREATE DATABASE mySQL
+      go
+    - select name from sys.databases
+      go
   - Emulate failure of SQL Server container and benefit from Kubernetes-based resilience ... [video](./videos/Access_Failover.mp4)
-
+    - kubectl get deployments -A (find mssql-deployment or use Dashboard)
+    - kubectl get pods -A (find the mssql-deployment-<podID>)
+    - kubectl delete pod mssql-deployment-<podID>
+    - retry previous sqlcmd access, list databases to show persistence
+    - kubectl get pods -A (find the new mssql-deployment-<podID>)
