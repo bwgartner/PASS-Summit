@@ -2,6 +2,7 @@
 
 ## References:
 
+* Azure webinar series [How to Run SQL Server on Azure VMs on SUSE Linux](https://webinars.dev/miAzure webinar series How to Run SQL Server on Azure VMs on SUSE Linuxcrosoft/azure-webinar-series-how-run-sql-server-azure-vms-suse-linux/)
 * PASS Summit presentation - [Modernizing SQL Server Operations with Kubernetes](https://virtual.passsummit.com/fsPopupEmbed.asp?Mode=presInfo&PresentationID=798356&embedded=true) ... [presentation](../Session-Modernizing_SQL_Server_Operations_with_Kubernetes/Modernizing_SQL_Server_Operations_with_Kubernetes.pdf), [video](../Session-Modernizing_SQL_Server_Operations_with_Kubernetes/videos/Modernizing_SQL_Server_Operations_with_Kubernetes.mp4)
   - snippet of the goal for this demo ... [video](../Session-Modernizing_SQL_Server_Operations_with_Kubernetes/videos/SQLServer_K8s_failover.mp4)
 * related PASS Summit 2020 demo session [SQL Server on Linux on Azure Quickstart](https://teams.microsoft.com/l/meetup-join/19%3ameeting_ODE5M2UyY2MtZDMxZS00MTNkLWE1ZDItNzUyNDI4OWJlY2E1%40thread.v2/0?context=%7b%22Tid%22%3a%22f7a17af6-1c5c-4a36-aa8b-f5be247aa4ba%22%2c%22Oid%22%3a%227e47b779-9638-4f49-b6ba-be9fda179168%22%2c%22IsBroadcastMeeting%22%3atrue%7d)
