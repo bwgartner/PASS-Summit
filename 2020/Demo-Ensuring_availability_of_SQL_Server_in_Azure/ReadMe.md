@@ -28,7 +28,7 @@
     - Linux Azure VM (either [PAYG or BYOS](https://azure.microsoft.com/en-us/overview/linux-on-azure/suse/)) or
     - Local Linux [VM](https://susedefines.suse.com/definition/jeos-just-enough-operating-system/) client ... [video](./videos/Setup_client.mp4)
       - Configure necessary client-side tools
-        - Install [kubectl](https://FixMe) client
+        - Install [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) client
         - Install [mssql-tools](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver15#SLES) client
         - Install [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-zypper) client
 
