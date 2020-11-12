@@ -19,6 +19,7 @@
   - Setup an [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal) [ AKS ] ... [video](./videos/Setup_AKS.mp4)
     - alternative : [SUSE CaaS Platform](https://www.suse.com/products/caas-platform/) [deployment](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-deployment/) on Azure VMs or baremetal systems
       - NOTE: can also be deployed on-premise or other locations
+        - with [SUSE Enterprise Storage](https://www.suse.com/products/suse-enterprise-storage/) [deployment](https://documentation.suse.com/ses/7/)
 
 ## Process:
 
