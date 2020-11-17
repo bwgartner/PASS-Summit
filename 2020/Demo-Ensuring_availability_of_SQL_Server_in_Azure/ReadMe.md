@@ -20,7 +20,7 @@
 
 * Choice of Kubernetes clusters
   - Login to [Azure Portal](https://portal.azure.com/)
-    - Setup an [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal) [ AKS ] ... [video](./videos/Setup_AKS.mp4)
+    - Setup an [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal) [ AKS ] ... [video](./videos/AKS_Setup.mp4)
   - [Deploy](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-deployment/) SUSE CaaS Platform
     - on Azure VMs or other cloud service providers or
     - choice of various hypervisors or baremetal systems (on-premise)
@@ -38,7 +38,7 @@
         - Install [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-zypper) client
   - Connect to Azure Kubernetes Service
     - Via a browser to [Azure](https://portal.azure.com/)
-    - Connect to respective AKS instance from client system ... [video](./videos/Connect_AKS.mp4)
+    - Connect to respective AKS instance from client system ... [video](./videos/AKS_Connect.mp4)
       - az login
       - az account set --subscription YourSubscription
       - az aks get-credentials --resource-group YourResourceGroup --name YourResourceName
@@ -46,7 +46,7 @@
     - Obtain respective cluster and user kubeconfig file for kubectl access
 
 * Setup SQL Server application deployment
-  - Within Azure Kubernetes Service resource ... [video](./videos/Setup_SQLServer.mp4)
+  - Within Azure Kubernetes Service resource ... [video](./videos/AKS_SQLServer.mp4)
     - [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15)
       - setup credential secret
       - create persistent volume claim from existing storage class (for backend storage)
@@ -65,13 +65,13 @@
 
 * Access SQL Server and test failover
   - Connect to SQL Server container pod via sqlcmd
-    - through loadbalancer from Client
+    - through loadbalancer from Client ... [video](./videos/Client_sqlcmd.mp4)
       - sqlcmd -S IPLoadBalancer -U sa -P secretPassword
-    - directly within the SQL Server pod
+    - directly within the SQL Server pod ... [video](./videos/Pod_sqlcmd.mp4)
       - kubectl get pods (look for mssql-deployment-podNameID)
       - kubectl exec -it mssql-deployment-podNameID /bin/sh
         - sqlcmd -S localhost -U sa -P secretPassword
-  - Query / modify SQL Server content via sqlcmd
+  - Query / modify SQL Server content via sqlcmd ... [video](./videos/Query_sqlcmd.mp4)
     - select name from sys.databases
       go
     - CREATE DATABASE myMSSQL
@@ -79,14 +79,15 @@
     - select name from sys.databases
       go
     - quit
-  - Emulate failure of SQL Server container and benefit from Kubernetes-based resilience ... [video](./videos/Access_Failover.mp4)
+  - Emulate failure of SQL Server container and benefit from Kubernetes-based resilience ... [video](./videos/Emulate_Failover.mp4)
     - kubectl get deployments -A (find mssql-deployment or use Dashboard)
     - kubectl get pods -A (find the mssql-deployment-podNameID)
     - kubectl delete pod mssql-deployment-podNameID
     - kubectl get pods -A (find the new mssql-deployment-podNameID)
+  - Validate data content persists
     - retry previous sqlcmd connect/query access, listing databases to show persistence
 
-* Cleanup SQL Server deployment
+* Cleanup SQL Server deployment ... [video](./videos/Cleanup.mp4)
   - kubectl delete -f ./[sqldeployment.yaml](./sqldeployment.yaml)
   - kubectl delete -f "respective PVC.yaml"
   - kubectl delete secret mssql
