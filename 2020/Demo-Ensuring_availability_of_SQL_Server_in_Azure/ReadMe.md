@@ -14,20 +14,22 @@
 * Azure
   - Have a portal account with access to resources
 * [SUSE CaaS Platform](https://www.suse.com/products/caas-platform/)
-  - Have the respective "kubeconfig" to access the cluster and respective [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) resources
+  - Have the respective [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) to access the cluster resources with and respective [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 
 ## Preparation:
 
 * Choice of Kubernetes clusters
   - Login to [Azure Portal](https://portal.azure.com/)
     - Setup an [Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal) [ AKS ] ... [video](./videos/Setup_AKS.mp4)
-  - [Deploy](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-deployment/) SUSE CaaS Platform on Azure VMs or other cloud service providers, choice of hypervisors or baremetal systems
-    - NOTE: can also be deployed with [SUSE Enterprise Storage](https://www.suse.com/products/suse-enterprise-storage/) being [deployed](https://documentation.suse.com/ses/7/) as the [CSI](https://kubernetes-csi.github.io/docs/) storage class [integrated](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-admin/#ses-integration) with an existing cluster or in a [hyperconverged](https://documentation.suse.com/ses/7/single-html/ses-rook/#book-storage-rook) approach for persistent volumes
+  - [Deploy](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-deployment/) SUSE CaaS Platform
+    - on Azure VMs or other cloud service providers or
+    - choice of various hypervisors or baremetal systems (on-premise)
+    - NOTE: can also be [deployed](https://documentation.suse.com/ses/7/) in conjuction with [SUSE Enterprise Storage](https://www.suse.com/products/suse-enterprise-storage/) as the [CSI](https://kubernetes-csi.github.io/docs/) storage class for persistent volumes for [integration](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-admin/#ses-integration) with an existing cluster or in a [hyperconverged](https://documentation.suse.com/ses/7/single-html/ses-rook/#book-storage-rook)
 
 ## Process:
 
-* Access the respective Kubernetes cluster instance
-  - General client setup
+* Setup access to the respective Kubernetes cluster instance
+  - General client
     - Linux Azure VM resource (either [PAYG or BYOS](https://azure.microsoft.com/en-us/overview/linux-on-azure/suse/)) or
     - Local Linux [VM](https://susedefines.suse.com/definition/jeos-just-enough-operating-system/) client ... [video](./videos/Setup_client.mp4)
       - Configure necessary client-side tools
@@ -41,10 +43,10 @@
       - az account set --subscription YourSubscription
       - az aks get-credentials --resource-group YourResourceGroup --name YourResourceName
   - Connect to SUSE CaaS Platform
-    - Obtain respective cluster and user [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) file for kubectl access
+    - Obtain respective cluster and user kubeconfig file for kubectl access
 
 * Setup SQL Server application deployment
-  - Azure Kubernetes Service ... [video](./videos/Setup_SQLServer.mp4)
+  - Within Azure Kubernetes Service resource ... [video](./videos/Setup_SQLServer.mp4)
     - [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15)
       - setup credential secret
       - create persistent volume claim from existing storage class (for backend storage)
