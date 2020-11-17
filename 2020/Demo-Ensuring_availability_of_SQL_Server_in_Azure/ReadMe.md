@@ -27,7 +27,7 @@
 ## Process:
 
 * Access the respective Kubernetes cluster instance
-  - Genearl client setup
+  - General client setup
     - Linux Azure VM resource (either [PAYG or BYOS](https://azure.microsoft.com/en-us/overview/linux-on-azure/suse/)) or
     - Local Linux [VM](https://susedefines.suse.com/definition/jeos-just-enough-operating-system/) client ... [video](./videos/Setup_client.mp4)
       - Configure necessary client-side tools
@@ -41,7 +41,7 @@
       - az account set --subscription YourSubscription
       - az aks get-credentials --resource-group YourResourceGroup --name YourResourceName
   - Connect to SUSE CaaS Platform
-    - Obtain respective kubeconfig file for kubectl access
+    - Obtain respective cluster and user [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) file for kubectl access
 
 * Setup SQL Server application deployment
   - Azure Kubernetes Service ... [video](./videos/Setup_SQLServer.mp4)
