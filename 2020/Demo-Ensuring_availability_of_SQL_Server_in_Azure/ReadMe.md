@@ -49,7 +49,7 @@
 
 * Setup SQL Server application deployment
   - In Azure Kubernetes Service resource ... [video](./videos/AKS_SQLServer.mp4)
-    - [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15)
+    - refer to : [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15)
       - create SA password in Kubernetes credential secret
         - kubectl create secret generic mssql --from-literal=SA_PASSWORD="MyC0m9l&xP@ssw0rd"
       - create persistent volume claim from existing storage class (for backend storage)
@@ -58,7 +58,7 @@
       - create complete deployment of loadbalancer, replica set and leverage containerized SQL Server
         - kubectl apply -f ./[sqldeployment.yaml](./sqldeployment.yaml)
   - In SUSE CaaS Platform
-    - leverage previous AKS process and YAML templates
+    - leverage previous AKS process and YAML templates ... [video](./videos/CaaSPlatform_SQLServer.mp4)
       - create SA password in Kubernetes credential secret
       - leverage available storage class
         - kubectl get sc 
@@ -90,7 +90,7 @@
   - Validate data content persists
     - retry previous sqlcmd connect/query access, listing databases to show persistence
 
-* Cleanup SQL Server deployment ... [video](./videos/Cleanup.mp4)
+* Cleanup SQL Server deployment
   - kubectl delete -f ./[sqldeployment.yaml](./sqldeployment.yaml)
   - kubectl delete -f "respective PVC.yaml"
   - kubectl delete secret mssql
