@@ -14,7 +14,7 @@
 * Azure
   - Have a portal account with access to resources
 * [SUSE CaaS Platform](https://www.suse.com/products/caas-platform/)
-  - Have the respective [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) to access the cluster resources with and respective [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+  - Have the respective [kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/) to access the cluster resources with respective [RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 
 ## Preparation:
 
@@ -74,7 +74,7 @@
       - kubectl get pods (look for mssql-deployment-podNameID)
       - kubectl exec -it mssql-deployment-podNameID /bin/sh
         - sqlcmd -S localhost -U sa -P secretPassword
-  - Query / modify SQL Server content via sqlcmd ... [video](./videos/Query_sqlcmd.mp4)
+  - Query / modify SQL Server content via sqlcmd
     - select name from sys.databases
       go
     - CREATE DATABASE myMSSQL
