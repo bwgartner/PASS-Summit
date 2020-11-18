@@ -24,7 +24,7 @@
   - [Deploy](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-deployment/) SUSE CaaS Platform
     - on Azure VMs or other cloud service providers or
     - choice of various hypervisors or baremetal systems (on-premise)
-    - NOTE: can also be [deployed](https://documentation.suse.com/ses/7/) in conjuction with [SUSE Enterprise Storage](https://www.suse.com/products/suse-enterprise-storage/) as the [CSI](https://kubernetes-csi.github.io/docs/) storage class for persistent volumes for [integration](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-admin/#ses-integration) with an existing cluster or in a [hyperconverged](https://documentation.suse.com/ses/7/single-html/ses-rook/#book-storage-rook)
+    - NOTE: can also be [deployed](https://documentation.suse.com/ses/7/) in conjuction with [SUSE Enterprise Storage](https://www.suse.com/products/suse-enterprise-storage/) as the [CSI](https://kubernetes-csi.github.io/docs/) storage class for persistent volumes for [integration](https://documentation.suse.com/suse-caasp/4.5/single-html/caasp-admin/#ses-integration) with an existing cluster or in a [hyperconverged](https://documentation.suse.com/ses/7/single-html/ses-rook/#book-storage-rook) fashion
 
 ## Process:
 
@@ -38,25 +38,28 @@
         - Install [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-zypper) client
   - Connect to Azure Kubernetes Service
     - Via a browser to [Azure](https://portal.azure.com/)
-    - Connect to respective AKS instance from client system ... [video](./videos/AKS_Connect.mp4)
+    - Connect to respective AKS instance from client system
       - az login
       - az account set --subscription YourSubscription
       - az aks get-credentials --resource-group YourResourceGroup --name YourResourceName
   - Connect to SUSE CaaS Platform
     - Obtain respective cluster and user kubeconfig file for kubectl access
+  - Validate kubectl access to respective Kubernetes cluster
+    - kubectl get nodes
 
 * Setup SQL Server application deployment
-  - Within Azure Kubernetes Service resource ... [video](./videos/AKS_SQLServer.mp4)
+  - In Azure Kubernetes Service resource ... [video](./videos/AKS_SQLServer.mp4)
     - [Deploy a SQL Server container in Kubernetes with Azure Kubernetes Services (AKS)](https://docs.microsoft.com/en-us/sql/linux/tutorial-sql-server-containers-kubernetes?view=sql-server-ver15)
-      - setup credential secret
+      - create SA password in Kubernetes credential secret
+        - kubectl create secret generic mssql --from-literal=SA_PASSWORD="MyC0m9l&xP@ssw0rd"
       - create persistent volume claim from existing storage class (for backend storage)
         - kubectl get sc
         - kubectl apply -f ./[pvc.yaml](./pvc.yaml)
       - create complete deployment of loadbalancer, replica set and leverage containerized SQL Server
         - kubectl apply -f ./[sqldeployment.yaml](./sqldeployment.yaml)
-  - SUSE CaaS Platform
-    - Leverage similar AKS process and YAML templates
-      - setup credential secret
+  - In SUSE CaaS Platform
+    - Leverage previous AKS process and YAML templates
+      - create SA password in Kubernetes credential secret
       - leverage available storage class
         - kubectl get sc 
           - kubectl apply -f ./[pvc-ses.yaml](./pvc-ses.yaml) ... or you could use the [NFS](./pvc-nfs.yaml) storage class variant
@@ -64,7 +67,7 @@
         - kubectl apply -f ./[sqldeployment.yaml](./sqldeployment.yaml)
 
 * Access SQL Server and test failover
-  - Connect to SQL Server container pod via sqlcmd
+  - Connect to SQL Server container pod instance via sqlcmd
     - through loadbalancer from Client ... [video](./videos/Client_sqlcmd.mp4)
       - sqlcmd -S IPLoadBalancer -U sa -P secretPassword
     - directly within the SQL Server pod ... [video](./videos/Pod_sqlcmd.mp4)
